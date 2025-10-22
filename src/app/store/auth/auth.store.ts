@@ -27,7 +27,7 @@ type AuthState = {
 const initialState: AuthState = {
   user: null,
   token: null,
-  isLoading: false,
+  isLoading: true,
   error: null,
   isInitialized: false,
 };
@@ -54,6 +54,7 @@ export const AuthStore = signalStore(
           return authService.signInWithGoogle().pipe(
             tapResponse({
               next: async (result) => {
+                console.log("INIT LOGIN ---> ", store.isInitialized())
                 try {
                   const token = await authService.getCurrentToken();
                   patchState(store, {
@@ -118,11 +119,16 @@ export const AuthStore = signalStore(
     initAuthListener: rxMethod<void>(
       pipe(
         switchMap(() => {
+          console.log("AQUI INICIANDO EL PROFILE")
+
           return authService.getAuthStateChanges().pipe(
             tap(async (user) => {
               if (user) {
                 try {
+                  console.log("INIT AUTH --> ", store.isInitialized())
+                  console.log("aquii USER APP ---> ", user)
                   const token = await authService.getCurrentToken();
+
 
                   patchState(store, {
                     user,

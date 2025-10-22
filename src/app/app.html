@@ -1,13 +1,12 @@
 <!-- Toast -->
 <ngx-sonner-toaster position="top-right" richColors="true" closeButton="true" duration="3000"  />
 
-@if (!authStore.isReady()) {
-  <p>Cargando ...</p>
+@if(authStore.isLoading()) {
+  <app-loader />
 }
 @else {
-  <div>
-    <router-outlet />
-  </div>
-
+  <router-outlet />
 }
+
+
 
