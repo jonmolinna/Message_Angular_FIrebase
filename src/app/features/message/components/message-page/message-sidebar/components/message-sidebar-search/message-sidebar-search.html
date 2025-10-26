@@ -1,0 +1,41 @@
+<div class="p-2.5">
+  <div class="flex items-center justify-between p-2.5 gap-1 border border-gray-300 bg-gray-100 rounded-full">
+    <span class="text-gray-500">
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        stroke-width="1.5"
+        stroke="currentColor"
+        class="size-6"
+      >
+        <path
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          d="m21 21-5.197-5.197m0 0A7.5 7.5 0 1 0 5.196 5.196a7.5 7.5 0 0 0 10.607 10.607Z"
+        />
+      </svg>
+    </span>
+    <input
+      class="flex-1 min-w-0 border-none outline-none text-gray-900 placeholder:text-gray-500"
+      placeholder="Buscar chat"
+      type="text"
+      [value]="inputSearch()"
+      (input)="inputSearch.set($event.target.value)"
+    />
+    @if(inputSearch().length > 0) {
+        <span class="text-gray-500" fadeIn>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="size-5"
+          >
+            <path stroke-linecap="round" stroke-linejoin="round" d="M6 18 18 6M6 6l12 12" />
+          </svg>
+        </span>
+    }
+  </div>
+</div>

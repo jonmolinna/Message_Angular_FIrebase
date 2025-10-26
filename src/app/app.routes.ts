@@ -15,7 +15,6 @@ export const routes: Routes = [
   },
   {
     path: 'message',
-    canMatch: [authGuard],
     loadChildren: () => import('./features/message/message.routes').then((m) => m.MESSAGE_ROUTES),
   },
   {
@@ -24,4 +23,5 @@ export const routes: Routes = [
   },
 ];
 
+// canMatch: [authGuard],
 // canActivate
