@@ -1,9 +1,12 @@
-<div class="border border-gray-200">
-  <app-message-sidebar-header />
-  <app-message-sidebar-search />
-  <app-message-sidebar-filters />
-  <div class="px-2.5 py-[5px] flex flex-col gap-[7px]">
-    @for (item of [1,2,3,4,5,6,7]; track $index) {
+<div class="relative border border-gray-200 h-full">
+  <div class="sticky top-0 w-full bg-gray-50 z-10">
+    <app-message-sidebar-header />
+    <app-message-sidebar-search />
+    <app-message-sidebar-filters />
+  </div>
+  <!-- CHAT LIST -->
+  <div class="px-2.5 py-[5px] flex flex-col gap-[7px] h-[calc(100vh-185px)] overflow-y-auto">
+    @for (item of [1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16]; track $index) {
     <app-message-sidebar-chat />
     }
   </div>
