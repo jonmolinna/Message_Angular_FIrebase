@@ -2,16 +2,34 @@ import { Component, inject } from '@angular/core';
 import { Dropdown } from '../../../../../../../shared/components/ui/dropdown/dropdown';
 import { DROPDOWN_OPTION } from '../../../../../../../shared/components/ui/dropdown/model/dropdown.model';
 import { DomSanitizer } from '@angular/platform-browser';
+import { AuthStore } from '../../../../../../../store';
+import { CapitalizeLetterPipe } from '../../../../../../../shared/pipes';
 
 @Component({
   selector: 'app-message-sidebar-header',
-  imports: [Dropdown],
+  imports: [Dropdown, CapitalizeLetterPipe],
   templateUrl: './message-sidebar-header.html',
   styleUrl: './message-sidebar-header.css',
 })
 export class MessageSidebarHeader {
   private sanitizer = inject(DomSanitizer);
 
+  private authStore = inject(AuthStore);
+
+  // VARIABLES STORE
+  avatar = this.authStore.userPhoto
+  name = this.authStore.userDisplayName;
+
+  // METODOS
+  selectOption(option: DROPDOWN_OPTION): void {
+    console.log("session -----------> ", option)
+    if (option.value === 'cerrar-sesion') {
+      this.authStore.signOut();
+      console.log("CERRANDO SESSION")
+    }
+  }
+
+  // OPCIONES PARA EL MENU
   options: DROPDOWN_OPTION[] = [
     {
       label: 'Nuevo grupo',

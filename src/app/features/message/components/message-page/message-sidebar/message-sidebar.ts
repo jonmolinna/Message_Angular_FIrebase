@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { MessageSidebarHeader } from './components/message-sidebar-header/message-sidebar-header';
-import { MessageSidebarSearch } from './components/message-sidebar-search/message-sidebar-search';
-import { MessageSidebarFilters } from './components/message-sidebar-filters/message-sidebar-filters';
-import { MessageSidebarChat } from './components/message-sidebar-chat/message-sidebar-chat';
+import {
+  MessageSidebarChat,
+  MessageSidebarFilters,
+  MessageSidebarHeader,
+  MessageSidebarSearch,
+} from './components';
 
 @Component({
   selector: 'app-message-sidebar',

@@ -15,6 +15,8 @@ import { provideAuth, getAuth } from '@angular/fire/auth';
 
 // Interceptors
 import { authInterceptor } from './core/interceptors/auth/auth-interceptor';
+import { provideFirestore } from '@angular/fire/firestore';
+import { getFirestore } from 'firebase/firestore';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -28,5 +30,6 @@ export const appConfig: ApplicationConfig = {
     // Configuracion de Firebase
     provideFirebaseApp(() => initializeApp(environment.firebase)),
     provideAuth(() => getAuth()),
+    provideFirestore(() => getFirestore())
   ],
 };

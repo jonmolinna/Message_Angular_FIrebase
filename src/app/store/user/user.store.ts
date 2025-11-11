@@ -1,6 +1,6 @@
-import { patchState, signalStore, withMethods, withState } from '@ngrx/signals';
+import { patchState, signalStore, withComputed, withMethods, withState } from '@ngrx/signals';
 import { USER } from '../../core/models';
-import { inject } from '@angular/core';
+import { computed, inject } from '@angular/core';
 import { User } from '../../core/services';
 import { rxMethod } from '@ngrx/signals/rxjs-interop';
 import { pipe, switchMap, tap } from 'rxjs';
@@ -23,7 +23,10 @@ const initialState: UserState = {
 
 export const UserStore = signalStore(
   { providedIn: 'root' },
-  withState(initialState),
+  withState<UserState>(initialState),
+  withComputed(({user}) => ({
+    userPhoto: computed<string>(() => user()?.photoURL || '')
+  })),
   withMethods((store, userService = inject(User)) => ({
     getUser: rxMethod<string>(
       pipe(
@@ -66,6 +69,9 @@ export const UserStore = signalStore(
         switchMap((user) =>
           userService.createOrUpdateUser(user as any).then(
             () => {
+              console.log("YOOOO REGISTER ---> ", user)
+
+
               patchState(store, {
                 loading: false,
                 user,
